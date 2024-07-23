@@ -1,0 +1,15 @@
+wget
+transformers>=4.26.1
+faster-whisper==0.9.0
+git+https://github.com/m-bain/whisperX.git@49e0130e4e0c0d99d60715d76e65a71826a97109
+gdown
+streamlit
+streamlit-mic-recorder
+numpy
+gdown
+pydub
+transformers
+tensorflow
+whisper
+numpy
+moviepy
