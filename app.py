@@ -6,11 +6,11 @@ from streamlit_mic_recorder import mic_recorder
 
 @st.cache_resource
 def load_whisper_model(model_type):
-    if model_type == "Whisper en to en":
+    if model_type == "Whisper English to English":
         return wp.load_whisper_model("openai/whisper-small.en",
                                      'https://drive.google.com/uc?id=14AVtj9MqoOeIcryPwG0Wv86hxE-MBS12',
                                      'whisper-tiny-en.tflite')
-    elif model_type == "Whisper many to en":
+    elif model_type == "Whisper Multi-lingual":
         return wp.load_whisper_model("openai/whisper-small",
                                      'https://drive.google.com/uc?id=1V6vRfvCK4s7G0nM0Hpl_Djy_nNGcT3Hx',
                                      'whisper.tflite')
@@ -39,7 +39,7 @@ def process_transcribing(file_name, file_contents, processor, interpreter, input
             transcript_text = wp.transcribe_mp4_audio_chunks(output_directory, processor, interpreter, input_tensor, output_tensor)
         else:
             transcript_text = wp.transcribe_audio_chunks(output_directory, processor, interpreter, input_tensor, output_tensor)
-        transcript_text = transcript_text[0]
+        transcript_text = ' '.join(transcript_text)
         st.write("Transcript")
         st.markdown(transcript_text)
     # os.remove(file_path)
@@ -49,7 +49,7 @@ def main():
 
     # Add radio buttons for selecting the model type
     # model_type = st.radio("Select Whisper model:", ("Whisper en to en", "Whisper many to en"))
-    model_type = st.selectbox("Select Whisper model:", ("Whisper en to en", "Whisper many to en"))
+    model_type = st.selectbox("Select Whisper model:", ("Whisper English to English", "Whisper Multi-lingual"))
 
     # Load the selected model
     processor, interpreter, input_tensor, output_tensor = load_whisper_model(model_type)

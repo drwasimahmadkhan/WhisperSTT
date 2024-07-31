@@ -6,6 +6,7 @@ openai-whisper
 faster-whisper
 streamlit-mic-recorder
 gdown
+ffmpeg-python
 moviepy
 git+https://github.com/m-bain/whisperX.git@49e0130e4e0c0d99d60715d76e65a71826a97109
 
